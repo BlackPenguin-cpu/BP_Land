@@ -24,6 +24,16 @@ public class JoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private void Update()
     {
         stickAction.Invoke(stick.rectTransform.anchoredPosition);
+
+        InputFuncForKeyboard();
+    }
+
+    private void InputFuncForKeyboard()
+    {
+        float hor = Input.GetAxisRaw("Horizontal");
+        float ver = Input.GetAxisRaw("Vertical");
+
+        NowStickPosSet(rect.anchoredPosition + new Vector2(hor, ver) * 100);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
