@@ -8,11 +8,12 @@ public class JoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public static Action<Vector2> stickAction;
     [Range(0.1f, 2f)]
     public float stickSensitive = 1f;
-    [SerializeField]
-    private float stickDistance;
-
     [Header("UI Option")]
     public Image stick;
+
+    [SerializeField]
+    private float stickDistance;
+    private Vector3 stickPosition;
     private RectTransform rect;
     private void Awake()
     {
@@ -20,12 +21,15 @@ public class JoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private void Start()
     {
         rect = GetComponent<RectTransform>();
+        stickPosition = rect.position;
+
     }
     private void Update()
     {
         stickAction.Invoke(stick.rectTransform.anchoredPosition);
 
         InputFuncForKeyboard();
+        NowStickPosSet(stickPosition);
     }
 
     private void InputFuncForKeyboard()
@@ -33,22 +37,25 @@ public class JoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         float hor = Input.GetAxisRaw("Horizontal");
         float ver = Input.GetAxisRaw("Vertical");
 
-        NowStickPosSet(rect.anchoredPosition + new Vector2(hor, ver) * 100);
+        if (!Input.GetMouseButton(0) && Input.touchCount < 1)
+        {
+            stickPosition = rect.anchoredPosition + new Vector2(hor, ver) * 100;
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        NowStickPosSet(eventData.position);
+        stickPosition = eventData.position;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        NowStickPosSet(eventData.position);
+        stickPosition = eventData.position;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        NowStickPosSet(rect.position);
+        stickPosition = rect.position;
     }
     private void NowStickPosSet(Vector2 pos)
     {
