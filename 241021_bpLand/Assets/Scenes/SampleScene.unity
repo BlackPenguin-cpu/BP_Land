@@ -440,7 +440,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC548\uB155\uD558\uC138\uC694! \uC120\uB7C9\uD55C \uC2DC\uBBFC\uC785\uB2C8\uB2E4!\n\uC751\uC6B0\uC60C\uB69C\uC5B8\uB760\uC5D4"
+  m_text: "<shake>\uC548\uB155\uD558\uC138\uC694! \uC120\uB7C9\uD55C \uC2DC\uBBFC\uC785\uB2C8\uB2E4!</shake>\n<shake
+    f=10000>\uC751\uC6B0\uC60C\uB69C\uC5B8\uB760\uC5D4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e69e5aa861e4b945b6780afa89dde4a, type: 2}
   m_sharedMaterial: {fileID: 5041072823138792276, guid: 2e69e5aa861e4b945b6780afa89dde4a, type: 2}
@@ -532,7 +533,8 @@ MonoBehaviour:
   typewriterStartsAutomatically: 0
   animationLoop: 0
   timeScale: 0
-  _text: "\uC548\uB155\uD558\uC138\uC694! \uC120\uB7C9\uD55C \uC2DC\uBBFC\uC785\uB2C8\uB2E4!\n\uC751\uC6B0\uC60C\uB69C\uC5B8\uB760\uC5D4"
+  _text: "<shake>\uC548\uB155\uD558\uC138\uC694! \uC120\uB7C9\uD55C \uC2DC\uBBFC\uC785\uB2C8\uB2E4!</shake>\n<shake
+    f=10000>\uC751\uC6B0\uC60C\uB69C\uC5B8\uB760\uC5D4"
   useDynamicScaling: 1
   referenceFontSize: 10
   isResettingTimeOnNewText: 1
