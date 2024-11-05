@@ -5,11 +5,13 @@ using UnityEngine;
 
 public abstract class InteractiveObj : MonoBehaviour
 {
+    [Header("Managing on Inspector")]
     public float durationForInteractive;
     public float canInteractiveDistance;
 
     private MainCharacter refCharacter;
 
+    [Header("For Debugging")]
     [SerializeField]
     private float curDurationForInteractive;
     [SerializeField]
@@ -17,7 +19,7 @@ public abstract class InteractiveObj : MonoBehaviour
     [SerializeField]
     private bool isAlreadyInteraction;
 
-    protected virtual void Awake()
+    private void Start()
     {
         refCharacter = MainCharacter.character;
     }

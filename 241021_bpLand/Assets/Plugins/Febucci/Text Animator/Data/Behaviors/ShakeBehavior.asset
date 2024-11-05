@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tagID: shake
   baseAmplitude: 1.13
-  baseDelay: 0.1
+  baseDelay: 0.4
   baseWaveSize: 0.45

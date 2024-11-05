@@ -7,9 +7,25 @@ using Febucci.UI;
 
 public class NpcTextBox : MonoBehaviour
 {
-    public TextMeshProUGUI npcTextBox;
+    public static NpcTextBox Instance { get; private set; }
 
-    private void Update()
+    public List<string> textList = new List<string>();
+    public KoreanTyperDemo_Auto textAuto;
+
+    public void Awake()
     {
+        Instance = this;
+    }
+    public void StartText(List<string> curTextList)
+    {
+        textList = curTextList;
+        StartText();
+    }
+    public void StartText()
+    {
+        foreach (var curText in textList)
+        {
+            textAuto.StartTexting(curText);
+        }
     }
 }

@@ -9,9 +9,12 @@ public class MainCharacter : MonoBehaviour
     [SerializeField]
     [Range(0.1f, 10f)]
     public float moveSpeed = 2f;
-    void Start()
+    private void Awake()
     {
         character = this;
+    }
+    void Start()
+    {
         JoyStick.stickAction += CharMove;
     }
 
