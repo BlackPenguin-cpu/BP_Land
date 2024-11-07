@@ -50,6 +50,7 @@ public abstract class InteractiveObj : MonoBehaviour
         {
             curDurationForInteractive += Time.deltaTime;
             isSelcet = true;
+            var a = new Material[] { refRenderer.material };
         }
         else
         {
