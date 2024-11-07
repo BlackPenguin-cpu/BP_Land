@@ -9,6 +9,7 @@ public class MainCharacter : MonoBehaviour
     [SerializeField]
     [Range(0.1f, 10f)]
     public float moveSpeed = 2f;
+    public bool isMove = false;
     private void Awake()
     {
         character = this;
@@ -24,5 +25,6 @@ public class MainCharacter : MonoBehaviour
     public void CharMove(Vector2 pos)
     {
         transform.position += (Vector3)pos * moveSpeed * Time.deltaTime;
+        isMove = !(pos == Vector2.zero);
     }
 }

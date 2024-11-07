@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public abstract class InteractiveObj : MonoBehaviour
 {
     [Header("Managing on Inspector")]
     public float durationForInteractive;
-    public float canInteractiveDistance;
+    public float canInteractiveDistance = 2;
 
     private MainCharacter refCharacter;
     private Renderer refRenderer;
@@ -38,6 +39,10 @@ public abstract class InteractiveObj : MonoBehaviour
             isAlreadyInteraction = true;
         }
         TimerFunc();
+    }
+    private float EaseInOutCubic(float x)
+    {
+        return x < 0.5 ? 4 * x * x * x : 1 - Mathf.Pow(-2 * x + 2, 3) / 2;
     }
     protected virtual void TimerFunc()
     {
