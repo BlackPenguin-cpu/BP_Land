@@ -10,6 +10,7 @@ public abstract class InteractiveObj : MonoBehaviour
     public float canInteractiveDistance;
 
     private MainCharacter refCharacter;
+    private Renderer refRenderer;
 
     [Header("For Debugging")]
     [SerializeField]
@@ -19,9 +20,15 @@ public abstract class InteractiveObj : MonoBehaviour
     [SerializeField]
     private bool isAlreadyInteraction;
 
-    private void Start()
+    private Material[] originMats;
+    private Material outlineMat;
+
+    protected virtual void Start()
     {
+        refRenderer = GetComponent<Renderer>();
         refCharacter = MainCharacter.character;
+
+        originMats = refRenderer.materials;
     }
     protected virtual void Update()
     {
@@ -43,6 +50,7 @@ public abstract class InteractiveObj : MonoBehaviour
         {
             isSelcet = false;
             curDurationForInteractive = 0;
+            refRenderer.materials = originMats;
         }
     }
     protected abstract void OnInteractionAction();
