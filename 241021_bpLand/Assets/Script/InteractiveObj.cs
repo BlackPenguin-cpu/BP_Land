@@ -7,7 +7,7 @@ using UnityEngine;
 public abstract class InteractiveObj : MonoBehaviour
 {
     [Header("Managing on Inspector")]
-    public float durationForInteractive;
+    public float durationForInteractive = 1.2f;
     public float canInteractiveDistance = 2;
 
     private MainCharacter refCharacter;
@@ -21,7 +21,7 @@ public abstract class InteractiveObj : MonoBehaviour
     [SerializeField]
     private bool isAlreadyInteraction;
 
-    private Material[] originMats;
+    private Material originMat;
     private Material outlineMat;
 
     protected virtual void Start()
@@ -29,7 +29,17 @@ public abstract class InteractiveObj : MonoBehaviour
         refRenderer = GetComponent<Renderer>();
         refCharacter = MainCharacter.character;
 
-        originMats = refRenderer.materials;
+        outlineMat = Resources.Load<Material>("Material/Outline");
+        originMat = refRenderer.material;
+        JoyStick.stickAction += OnDetectPlayerMove;
+    }
+
+    private void OnDetectPlayerMove(Vector2 vec)
+    {
+        if (vec != Vector2.zero)
+        {
+            curDurationForInteractive = 0;
+        }
     }
     protected virtual void Update()
     {
@@ -50,13 +60,13 @@ public abstract class InteractiveObj : MonoBehaviour
         {
             curDurationForInteractive += Time.deltaTime;
             isSelcet = true;
-            var a = new Material[] { refRenderer.material };
+            refRenderer.material = outlineMat;
         }
         else
         {
             isSelcet = false;
             curDurationForInteractive = 0;
-            refRenderer.materials = originMats;
+            refRenderer.material = originMat;
         }
     }
     protected abstract void OnInteractionAction();
