@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MainCharacter : MonoBehaviour
 {
-    public static MainCharacter character;
+    public static MainCharacter instacne;
 
     [SerializeField]
     [Range(0.1f, 10f)]
@@ -12,7 +12,7 @@ public class MainCharacter : MonoBehaviour
     public bool isMove = false;
     private void Awake()
     {
-        character = this;
+        instacne = this;
     }
     void Start()
     {

@@ -5,21 +5,23 @@ using UnityEngine.UI;
 
 public class NpcLoadingBar : MonoBehaviour
 {
+    public static NpcLoadingBar instance;
     [SerializeField]
     private Image loadingBar;
-    void Start()
+    public void Awake()
     {
-
+        instance = this;
+    }
+    public void Start()
+    {
+        loadingBar = Resources.Load<Image>("Prefab/NpcLoadingBar");
     }
     public Image CreateLoadingBar()
     {
+        var obj = Instantiate(loadingBar);
+        obj.fillAmount = 0;
+        obj.transform.SetParent(transform);
 
-        loadingBar.fillAmount = 0;
-
-    }
-
-    void Update()
-    {
-
+        return obj;
     }
 }

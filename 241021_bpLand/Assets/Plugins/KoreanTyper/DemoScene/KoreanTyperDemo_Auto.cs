@@ -11,18 +11,12 @@ using KoreanTyper;                                                  // Add Korea
 //===================================================================================================================
 public class KoreanTyperDemo_Auto : MonoBehaviour
 {
-    public TextMeshProUGUI texts;
-    public void StartTexting(string text)
-    {
-        StartCoroutine(TypingText(text));
-    }
-
-    public IEnumerator TypingText(string printText)
+    public IEnumerator TypingText(TextMeshProUGUI tmpUI, string printText)
     {
         //=======================================================================================================
         // Initializing | 초기화
         //=======================================================================================================
-        texts.text = "";
+        tmpUI.text = "";
 
         //=======================================================================================================
         //  Typing effect | 타이핑 효과
@@ -31,7 +25,7 @@ public class KoreanTyperDemo_Auto : MonoBehaviour
 
         for (int i = 0; i <= strTypingLength; i++)
         {
-            texts.text = printText.Typing(i);
+            tmpUI.text = printText.Typing(i);
             yield return new WaitForSeconds(0.03f);
         }
     }
