@@ -36,13 +36,13 @@ public class NpcTextBox : MonoBehaviour
     public void StartText(List<EffectTextInfo> curTextList)
     {
         textList = curTextList;
-        if (textCoroutine != null) StopCoroutine(textCoroutine);
+        if (textCoroutine != null) StopAllCoroutines();
         textCoroutine = StartCoroutine(StartText());
     }
 
     public void ResetText()
     {
-        if (textCoroutine != null) StopCoroutine(textCoroutine);
+        if (textCoroutine != null) StopAllCoroutines();
         curTmpAnimator.Behaviors.Initialize();
         tmpUI.text = "";
     }
