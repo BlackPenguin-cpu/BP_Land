@@ -55,6 +55,7 @@ public abstract class InteractiveObj : MonoBehaviour
         {
             OnInteractionAction();
             isAlreadyInteraction = true;
+            loadingBar.gameObject.SetActive(false);
         }
         TimerFunc();
     }
