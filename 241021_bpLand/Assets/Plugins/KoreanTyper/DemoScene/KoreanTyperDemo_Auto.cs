@@ -26,7 +26,7 @@ public class KoreanTyperDemo_Auto : MonoBehaviour
         for (int i = 0; i <= strTypingLength; i++)
         {
             tmpUI.text = printText.Typing(i);
-            yield return new WaitForSeconds(0.03f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }

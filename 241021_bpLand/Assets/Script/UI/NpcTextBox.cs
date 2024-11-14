@@ -23,6 +23,7 @@ public class NpcTextBox : MonoBehaviour
     public TextMeshProUGUI tmpUI;
 
     private TextAnimator_TMP curTmpAnimator;
+    private Coroutine textCoroutine;
 
     public void Awake()
     {
@@ -35,11 +36,13 @@ public class NpcTextBox : MonoBehaviour
     public void StartText(List<EffectTextInfo> curTextList)
     {
         textList = curTextList;
-        StartCoroutine(StartText());
+        if (textCoroutine != null) StopCoroutine(textCoroutine);
+        textCoroutine = StartCoroutine(StartText());
     }
 
     public void ResetText()
     {
+        if (textCoroutine != null) StopCoroutine(textCoroutine);
         curTmpAnimator.Behaviors.Initialize();
         tmpUI.text = "";
     }

@@ -767,7 +767,7 @@ MonoBehaviour:
   typewriterStartsAutomatically: 0
   animationLoop: 0
   timeScale: 0
-  _text: "<horiexp>\uD14C\uC2A4\uD2B8\uD14C\uC2A4\uD2B8"
+  _text: 
   useDynamicScaling: 1
   referenceFontSize: 10
   isResettingTimeOnNewText: 0
@@ -777,9 +777,7 @@ MonoBehaviour:
   useDefaultStyleSheet: 1
   styleSheet: {fileID: 0}
   databaseActions: {fileID: 11400000, guid: c43ab1657accb9242922d57a9197b4b0, type: 2}
-  defaultAppearancesTags:
-  - horiexp
-  - size
+  defaultAppearancesTags: []
   defaultDisappearancesTags:
   - fade
   defaultBehaviorsTags: []
