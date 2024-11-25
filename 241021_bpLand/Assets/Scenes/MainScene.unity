@@ -318,7 +318,113 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stickSensitive: 1
   stick: {fileID: 1294877221}
+  activeJoystick: 0
   stickDistance: 22
+--- !u!1 &476446109
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 476446112}
+  - component: {fileID: 476446111}
+  - component: {fileID: 476446110}
+  m_Layer: 0
+  m_Name: TestPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &476446110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476446109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 091f4001261cdee4a99aad6a12da384f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactiveInfo:
+    durationForInteractive: 1.2
+    canInteractiveDistance: 2
+    curDurationForInteractive: 0
+    isSelcet: 0
+    isAlreadyInteraction: 0
+    loadingBarPos: {x: 0, y: 1, z: 0}
+  url: https://play.google.com/store/apps/details?id=com.funsterz.bwhero_aos&pcampaignid=web_share
+--- !u!212 &476446111
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476446109}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: c5bfef6c10c605447896ac88d4e889af, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &476446112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476446109}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,12 +712,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aa3fe548a435d54cacb09d23f15d0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durationForInteractive: 1
-  canInteractiveDistance: 2
-  curDurationForInteractive: 0
-  isSelcet: 0
-  isAlreadyInteraction: 0
-  loadingBarPos: {x: 0, y: 2, z: 0}
+  interactiveInfo:
+    durationForInteractive: 1.2
+    canInteractiveDistance: 2
+    curDurationForInteractive: 0
+    isSelcet: 0
+    isAlreadyInteraction: 0
+    loadingBarPos: {x: 0, y: 1, z: 0}
   npcTextList:
   - text: "\uC57C\uCC44\uB97C \uBA39\uB3C4\uB85D \uD558\uB834"
     textAnimStr: []
@@ -1187,3 +1294,4 @@ SceneRoots:
   - {fileID: 1847563944}
   - {fileID: 858293355}
   - {fileID: 572174125}
+  - {fileID: 476446112}
