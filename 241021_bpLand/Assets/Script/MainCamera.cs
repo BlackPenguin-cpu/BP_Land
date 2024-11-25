@@ -26,7 +26,7 @@ public class MainCamera : MonoBehaviour
     {
         mainChar = MainCharacter.instacne;
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if (cameraState == ECameraState.OnPlayer)
         {

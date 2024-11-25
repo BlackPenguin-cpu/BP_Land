@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
+using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -7,30 +9,34 @@ using UnityEngine.UI;
 
 public abstract class InteractiveObj : MonoBehaviour
 {
-    [Header("Managing on Inspector")]
-    [Min(0.1f)]
-    public float durationForInteractive = 1.2f;
-    [Min(0.1f)]
-    public float canInteractiveDistance = 2;
+    [System.Serializable]
+    public class InteractiveInfo
+    {
+        [Header("Managing on Inspector")]
+        [Min(0.1f)]
+        public float durationForInteractive = 1.2f;
+        [Min(0.1f)]
+        public float canInteractiveDistance = 2;
 
-    private MainCharacter refCharacter;
-    private Renderer refRenderer;
+        [Header("For Debugging")]
+        [ReadOnly]
+        public float curDurationForInteractive;
+        [ReadOnly]
+        public bool isSelcet;
+        [ReadOnly]
+        public bool isAlreadyInteraction;
 
-    [Header("For Debugging")]
-    [SerializeField]
-    private float curDurationForInteractive;
-    [SerializeField]
-    private bool isSelcet;
-    [SerializeField]
-    private bool isAlreadyInteraction;
+        public Vector3 loadingBarPos = Vector3.up;
+    }
 
     private Material originMat;
     private Material outlineMat;
-
+    
     private Image loadingBar;
-    [SerializeField]
-    private Vector3 loadingBarPos = Vector3.up;
+    private MainCharacter refCharacter;
+    private Renderer refRenderer;
 
+    public InteractiveInfo interactiveInfo;
     protected virtual void Start()
     {
         refRenderer = GetComponent<Renderer>();
@@ -45,35 +51,36 @@ public abstract class InteractiveObj : MonoBehaviour
     {
         if (vec != Vector2.zero)
         {
-            curDurationForInteractive = 0;
+            interactiveInfo.curDurationForInteractive = 0;
             OnResetInteraction();
         }
     }
     protected virtual void Update()
     {
-        if (!isAlreadyInteraction && curDurationForInteractive >= durationForInteractive)
+        if (!interactiveInfo.isAlreadyInteraction
+            && interactiveInfo.curDurationForInteractive >= interactiveInfo.durationForInteractive)
         {
             OnInteractionAction();
-            isAlreadyInteraction = true;
+            interactiveInfo.isAlreadyInteraction = true;
             loadingBar.gameObject.SetActive(false);
         }
         TimerFunc();
     }
     protected virtual void TimerFunc()
     {
-        if (Vector3.Distance(refCharacter.transform.position, transform.position) < canInteractiveDistance)
+        if (Vector3.Distance(refCharacter.transform.position, transform.position) < interactiveInfo.canInteractiveDistance)
         {
-            curDurationForInteractive += Time.deltaTime;
-            if (curDurationForInteractive > 0.1f)
+            interactiveInfo.curDurationForInteractive += Time.deltaTime;
+            if (interactiveInfo.curDurationForInteractive > 0.1f)
             {
                 OnStartInteraction();
             }
         }
         else
         {
-            if (isAlreadyInteraction)
+            if (interactiveInfo.isAlreadyInteraction)
             {
-                isAlreadyInteraction = false;
+                interactiveInfo.isAlreadyInteraction = false;
                 NpcTextBox.Instance.ResetText();
             }
             OnResetInteraction();
@@ -82,15 +89,16 @@ public abstract class InteractiveObj : MonoBehaviour
     protected virtual void OnStartInteraction()
     {
         refRenderer.material = outlineMat;
-        isSelcet = true;
+        interactiveInfo.isSelcet = true;
         if (loadingBar == null)
         {
             loadingBar = NpcLoadingBar.instance.CreateLoadingBar();
-            loadingBar.rectTransform.position = Camera.main.WorldToScreenPoint(transform.position + loadingBarPos);
+            loadingBar.rectTransform.position = Camera.main.WorldToScreenPoint(transform.position + interactiveInfo.loadingBarPos);
         }
         else
         {
-            var value = EaseInOutCubic(curDurationForInteractive / durationForInteractive);
+            var value = EaseInOutCubic(interactiveInfo.curDurationForInteractive / interactiveInfo.durationForInteractive);
+            loadingBar.rectTransform.position = Camera.main.WorldToScreenPoint(transform.position + interactiveInfo.loadingBarPos);
             loadingBar.fillAmount = value;
         }
     }
@@ -101,8 +109,8 @@ public abstract class InteractiveObj : MonoBehaviour
 
     protected virtual void OnResetInteraction()
     {
-        isSelcet = false;
-        curDurationForInteractive = 0;
+        interactiveInfo.isSelcet = false;
+        interactiveInfo.curDurationForInteractive = 0;
         refRenderer.material = originMat;
 
         if (loadingBar != null) Destroy(loadingBar.gameObject);

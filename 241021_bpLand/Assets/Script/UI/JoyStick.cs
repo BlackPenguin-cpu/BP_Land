@@ -10,11 +10,13 @@ public class JoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public float stickSensitive = 1f;
     [Header("UI Option")]
     public Image stick;
+    public bool activeJoystick = true;
 
     [SerializeField]
     private float stickDistance;
     private Vector3 stickPosition;
     private RectTransform rect;
+
     private void Awake()
     {
     }
@@ -26,7 +28,8 @@ public class JoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     }
     private void Update()
     {
-        stickAction.Invoke(stick.rectTransform.anchoredPosition);
+        if (activeJoystick)
+            stickAction.Invoke(stick.rectTransform.anchoredPosition);
 
         InputFuncForKeyboard();
         NowStickPosSet(stickPosition);

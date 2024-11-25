@@ -43,7 +43,7 @@ public class NpcTextBox : MonoBehaviour
     public void ResetText()
     {
         if (textCoroutine != null) StopAllCoroutines();
-        curTmpAnimator.Behaviors.Initialize();
+        curTmpAnimator?.Behaviors.Initialize();
         tmpUI.text = "";
     }
     public IEnumerator StartText()
