@@ -318,7 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stickSensitive: 1
   stick: {fileID: 1294877221}
-  activeJoystick: 0
+  activeJoystick: 1
   stickDistance: 22
 --- !u!1 &476446109
 GameObject:

@@ -5,6 +5,7 @@ using UnityEngine;
 public class MainCharacter : MonoBehaviour
 {
     public static MainCharacter instacne;
+    public static InteractiveObj nowInteractObj;
 
     [SerializeField]
     [Range(0.1f, 10f)]

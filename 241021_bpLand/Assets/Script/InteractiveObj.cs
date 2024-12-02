@@ -31,7 +31,7 @@ public abstract class InteractiveObj : MonoBehaviour
 
     private Material originMat;
     private Material outlineMat;
-    
+
     private Image loadingBar;
     private MainCharacter refCharacter;
     private Renderer refRenderer;
@@ -70,14 +70,20 @@ public abstract class InteractiveObj : MonoBehaviour
     {
         if (Vector3.Distance(refCharacter.transform.position, transform.position) < interactiveInfo.canInteractiveDistance)
         {
-            interactiveInfo.curDurationForInteractive += Time.deltaTime;
-            if (interactiveInfo.curDurationForInteractive > 0.1f)
+            if (MainCharacter.nowInteractObj == this || MainCharacter.nowInteractObj == null)
             {
-                OnStartInteraction();
+                MainCharacter.nowInteractObj = this;
+                interactiveInfo.curDurationForInteractive += Time.deltaTime;
+                if (interactiveInfo.curDurationForInteractive > 0.1f)
+                {
+                    OnStartInteraction();
+                }
             }
         }
         else
         {
+            if (MainCharacter.nowInteractObj == this)
+                MainCharacter.nowInteractObj = null;
             if (interactiveInfo.isAlreadyInteraction)
             {
                 interactiveInfo.isAlreadyInteraction = false;
