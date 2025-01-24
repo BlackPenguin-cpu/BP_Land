@@ -33,11 +33,27 @@ public class ChooseUI : MonoBehaviour
 
     private void Start()
     {
-        JoyStick.stickAction+= SelectAxis;
+        JoyStick.stickAction += SelectAxis;
     }
 
     private void SelectAxis(Vector2 vec)
     {
-        
+        if (vec.x == 1 && vec.y == 0)
+        {
+
+        }
+        else if (vec.x == -1 && vec.y == 0)
+        {
+
+        }
+        else if (vec.x == 0 && vec.y == 1)
+        {
+
+        }
+        else if (vec.x == 0 && vec.y == -1)
+        {
+
+        }
+
     }
 }
