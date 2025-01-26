@@ -117,7 +117,8 @@ public abstract class InteractiveObj : MonoBehaviour
     {
         interactiveInfo.isSelcet = false;
         interactiveInfo.curDurationForInteractive = 0;
-        refRenderer.material = originMat;
+        if (refRenderer != null)
+            refRenderer.material = originMat;
 
         if (loadingBar != null) Destroy(loadingBar.gameObject);
     }

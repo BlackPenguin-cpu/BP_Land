@@ -7,20 +7,19 @@ public class MainCamera : MonoBehaviour
     public enum ECameraState
     {
         OnPlayer,
+        ProductionObject,
+        Stay,
         End
     }
-    public MainCamera Instance
-    {
-        get { return instance; }
-        private set { instance = value; }
-    }
-    private static MainCamera instance;
+    public static MainCamera instance;
     private MainCharacter mainChar;
 
     public ECameraState cameraState;
+
+    public GameObject targetObj;
     private void Awake()
     {
-        Instance = this;
+        instance = this;
     }
     private void Start()
     {
@@ -32,10 +31,18 @@ public class MainCamera : MonoBehaviour
         {
             FollowPlayer();
         }
+        else if (cameraState == ECameraState.ProductionObject)
+        {
+            FollowObject(targetObj);
+        }
     }
     private void FollowPlayer()
     {
-        Vector3 vec = Vector3.Lerp(transform.position, mainChar.transform.position, Time.deltaTime * 10);
+        FollowObject(mainChar.gameObject);
+    }
+    private void FollowObject(GameObject obj)
+    {
+        Vector3 vec = Vector3.Lerp(transform.position, obj.transform.position, Time.deltaTime * 10);
         vec.z = -10;
         transform.position = vec;
     }
