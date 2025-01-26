@@ -19,13 +19,9 @@ public class MainCharacter : MonoBehaviour
     {
         JoyStick.stickAction += CharMove;
     }
-
-    void Update()
-    {
-    }
     public void CharMove(Vector2 pos)
     {
-        transform.position += (Vector3)pos * moveSpeed * Time.deltaTime;
+        transform.position += (Vector3)pos * (moveSpeed * Time.deltaTime);
         isMove = !(pos == Vector2.zero);
     }
 }

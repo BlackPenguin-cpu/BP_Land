@@ -42,7 +42,7 @@ public class MainCamera : MonoBehaviour
     }
     private void FollowObject(GameObject obj)
     {
-        Vector3 vec = Vector3.Lerp(transform.position, obj.transform.position, Time.deltaTime * 10);
+        var vec = Vector3.Lerp(transform.position, obj.transform.position, Time.deltaTime * 10);
         vec.z = -10;
         transform.position = vec;
     }

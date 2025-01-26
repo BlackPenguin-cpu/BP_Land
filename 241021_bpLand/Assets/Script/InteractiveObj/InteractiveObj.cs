@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Serialization;
 using Unity.Collections;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -49,11 +44,10 @@ public abstract class InteractiveObj : MonoBehaviour
 
     private void OnDetectPlayerMove(Vector2 vec)
     {
-        if (vec != Vector2.zero)
-        {
-            interactiveInfo.curDurationForInteractive = 0;
-            OnResetInteraction();
-        }
+        if (vec == Vector2.zero) return;
+        
+        interactiveInfo.curDurationForInteractive = 0;
+        OnResetInteraction();
     }
     protected virtual void Update()
     {
@@ -96,7 +90,7 @@ public abstract class InteractiveObj : MonoBehaviour
     {
         refRenderer.material = outlineMat;
         interactiveInfo.isSelcet = true;
-        if (loadingBar == null)
+        if (!loadingBar)
         {
             loadingBar = NpcLoadingBar.instance.CreateLoadingBar();
             loadingBar.rectTransform.position = Camera.main.WorldToScreenPoint(transform.position + interactiveInfo.loadingBarPos);

@@ -10,7 +10,7 @@ public class NameQuestMainObj : MonoBehaviour
 
     public IEnumerator NameObjectActive(int index)
     {
-        var renderer = nameObjects[index].GetComponent<SpriteRenderer>();
+        var spriteRenderer = nameObjects[index].GetComponent<SpriteRenderer>();
 
         var mainCam = MainCamera.instance;
         mainCam.cameraState = MainCamera.ECameraState.ProductionObject;
@@ -18,7 +18,7 @@ public class NameQuestMainObj : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        renderer.DOColor(Color.white, 1).SetEase(Ease.InOutQuad);
+        spriteRenderer.DOColor(Color.white, 1).SetEase(Ease.InOutQuad);
 
         yield return new WaitForSeconds(2f);
 

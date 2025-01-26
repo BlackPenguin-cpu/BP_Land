@@ -7,9 +7,10 @@ public class MainNPC : InteractiveObj
     public List<NpcTextBox.EffectTextInfo> npcTextList;
     protected override void OnInteractionAction()
     {
-        StartCoroutine(NPCStartTexting());
+        StartCoroutine(NpcStartTexting());
     }
-    IEnumerator NPCStartTexting()
+
+    private IEnumerator NpcStartTexting()
     {
         NpcTextBox.Instance.StartText(npcTextList);
         yield return null;
