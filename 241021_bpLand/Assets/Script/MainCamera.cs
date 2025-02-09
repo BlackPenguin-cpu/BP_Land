@@ -11,21 +11,25 @@ public class MainCamera : MonoBehaviour
         Stay,
         End
     }
+
     public static MainCamera instance;
     private MainCharacter mainChar;
 
     public ECameraState cameraState;
 
     public GameObject targetObj;
+
     private void Awake()
     {
         instance = this;
     }
+
     private void Start()
     {
         mainChar = MainCharacter.instacne;
     }
-    private void FixedUpdate()
+
+    private void Update()
     {
         if (cameraState == ECameraState.OnPlayer)
         {
@@ -36,10 +40,12 @@ public class MainCamera : MonoBehaviour
             FollowObject(targetObj);
         }
     }
+
     private void FollowPlayer()
     {
         FollowObject(mainChar.gameObject);
     }
+
     private void FollowObject(GameObject obj)
     {
         var vec = Vector3.Lerp(transform.position, obj.transform.position, Time.deltaTime * 10);
