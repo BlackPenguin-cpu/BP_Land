@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 45442443}
   - component: {fileID: 45442442}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: Select4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -484,7 +484,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -487, y: 16}
+  m_AnchoredPosition: {x: -487, y: 0}
   m_SizeDelta: {x: 343.3022, y: 86.4327}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &239779566
@@ -1633,7 +1633,7 @@ GameObject:
   - component: {fileID: 965393606}
   - component: {fileID: 965393605}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Select3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1793,7 +1793,7 @@ GameObject:
   - component: {fileID: 1055878212}
   - component: {fileID: 1055878211}
   m_Layer: 5
-  m_Name: Image (3)
+  m_Name: Select2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1832,7 +1832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.4575472, b: 0.4575472, a: 1}
+  m_Color: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2417,7 +2417,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1497002442
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4665,7 +4665,7 @@ GameObject:
   - component: {fileID: 1767747469}
   - component: {fileID: 1767747468}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Select1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5405,10 +5405,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 965393604}
   - {fileID: 1767747467}
-  - {fileID: 45442441}
   - {fileID: 1055878210}
+  - {fileID: 965393604}
+  - {fileID: 45442441}
   - {fileID: 310919676}
   m_Father: {fileID: 1656986310}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5429,7 +5429,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a239750538ba1364aaaf507327225ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chooseUiTextList: []
+  chooseUiList:
+  - image: {fileID: 1767747468}
+    text: {fileID: 239779566}
+  - image: {fileID: 1055878211}
+    text: {fileID: 1832973022}
+  - image: {fileID: 965393605}
+    text: {fileID: 1358412905}
+  - image: {fileID: 45442442}
+    text: {fileID: 782625019}
+  loadingCircle: {fileID: 310919677}
+  colorPallete: []
 --- !u!1 &2108584481
 GameObject:
   m_ObjectHideFlags: 0

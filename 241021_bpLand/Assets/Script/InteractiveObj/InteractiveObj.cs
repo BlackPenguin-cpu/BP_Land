@@ -109,8 +109,6 @@ public abstract class InteractiveObj : MonoBehaviour
         refRenderer.material = outlineMat;
         interactiveInfo.isSelcet = true;
 
-
-
         if (!loadingBar)
         {
             loadingBar = NpcLoadingBar.instance.CreateLoadingBar();
