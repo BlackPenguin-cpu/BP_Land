@@ -16,10 +16,6 @@ public class JoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private float stickDistance;
     private Vector3 stickPosition;
     private RectTransform rect;
-
-    private void Awake()
-    {
-    }
     private void Start()
     {
         rect = GetComponent<RectTransform>();
