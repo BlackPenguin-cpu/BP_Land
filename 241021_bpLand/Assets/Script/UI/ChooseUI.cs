@@ -8,6 +8,8 @@ using UnityEngine.Serialization;
 
 public class ChooseUI : MonoBehaviour
 {
+    public static ChooseUI Instance;
+
     public class ChooseSlotInfo
     {
         public string slotName;
@@ -37,22 +39,28 @@ public class ChooseUI : MonoBehaviour
     private readonly float chooseActionDuration = 3;
     private Vector2 curVec;
 
+    private void Start()
+    {
+        Instance = this;
+        JoyStick.stickAction += SelectAxis;
+    }
+
     public void ChooseSlotReset()
     {
         chooseSlotInfos.Clear();
     }
 
-    public void ChooseSlotAdd(List<string> infoText, List<Action> action)
+    public IEnumerator ChooseSlotInfoAddAndStart(List<string> infoText, List<Action> action)
     {
         for (int i = 0; i < infoText.Count; i++)
         {
             chooseSlotInfos.Add(new ChooseSlotInfo(infoText[i], action[i]));
         }
 
-        InteractionStart();
+        yield return InteractionStart();
     }
 
-    private void InteractionStart()
+    private IEnumerator InteractionStart()
     {
         for (int i = 0; i < chooseSlotInfos.Count; i++)
         {
@@ -67,11 +75,11 @@ public class ChooseUI : MonoBehaviour
                 chooseUiList[i].tmp.text = "x";
             }
         }
-    }
 
-    private void Start()
-    {
-        JoyStick.stickAction += SelectAxis;
+        while (true)
+            yield return null;
+        
+        
     }
 
     private void SelectAxis(Vector2 vec)
