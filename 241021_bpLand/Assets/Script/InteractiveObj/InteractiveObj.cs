@@ -58,6 +58,7 @@ public abstract class InteractiveObj : MonoBehaviour
             {
                 MainCharacter.instacne.isCanMoving = false;
             }
+
             OnInteractionAction();
             interactiveInfo.isAlreadyInteraction = true;
             loadingBar.gameObject.SetActive(false);
@@ -117,18 +118,14 @@ public abstract class InteractiveObj : MonoBehaviour
         }
         else
         {
-            var value = EaseInOutCubic(interactiveInfo.curDurationForInteractive /
-                                       interactiveInfo.durationForInteractive);
+            var value = Util.EaseInOutCubic(interactiveInfo.curDurationForInteractive /
+                                            interactiveInfo.durationForInteractive);
             loadingBar.rectTransform.position =
                 Camera.main.WorldToScreenPoint(transform.position + interactiveInfo.loadingBarPos);
             loadingBar.fillAmount = value;
         }
     }
 
-    private float EaseInOutCubic(float x)
-    {
-        return x < 0.5 ? 4 * x * x * x : 1 - Mathf.Pow(-2 * x + 2, 3) / 2;
-    }
 
     protected virtual void OnResetInteraction()
     {

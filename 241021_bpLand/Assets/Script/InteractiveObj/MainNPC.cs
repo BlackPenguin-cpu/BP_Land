@@ -17,8 +17,8 @@ public class MainNPC : InteractiveObj
         yield return NpcTextBox.Instance.StartText(npcTextList);
         yield return null;
 
-        var strs = new List<string>();
-        var actions = new List<Action>();
+        var strs = new List<string>() { "감사합니다", "나가주세요", "싫어요" };
+        var actions = new List<Action>() { null, null, null};
         yield return ChooseUI.Instance.ChooseSlotInfoAddAndStart(strs, actions);
 
 

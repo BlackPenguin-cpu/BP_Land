@@ -920,7 +920,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
@@ -1051,6 +1051,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1146,6 +1147,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraState: 0
   targetObj: {fileID: 0}
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AssetsPPU: 100
+  m_RefResolutionX: 1920
+  m_RefResolutionY: 1080
+  m_UpscaleRT: 1
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
+  m_CropFrameY: 0
+  m_StretchFill: 0
 --- !u!1 &586236900
 GameObject:
   m_ObjectHideFlags: 0
@@ -5627,7 +5648,13 @@ MonoBehaviour:
   - image: {fileID: 45442442}
     tmp: {fileID: 782625019}
   loadingCircle: {fileID: 310919677}
-  colorPallete: []
+  ChooseUIParent: {fileID: 201060554}
+  colorPallete:
+  - {r: 0.64705884, g: 0.7411765, b: 1, a: 1}
+  - {r: 0.9622642, g: 0.28595585, b: 0.28595585, a: 1}
+  - {r: 0.9490196, g: 0.972549, b: 0.48235294, a: 1}
+  - {r: 0.53333336, g: 1, b: 0.4, a: 1}
+  - {r: 0.48235294, g: 0.48235294, b: 0.48235294, a: 1}
 --- !u!1 &2108584481
 GameObject:
   m_ObjectHideFlags: 0
