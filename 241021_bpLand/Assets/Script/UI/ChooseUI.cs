@@ -88,15 +88,19 @@ public class ChooseUI : MonoBehaviour
 
     private void SelectAxis(Vector2 vec)
     {
-        if (curVec != vec || vec.normalized.x + vec.normalized.y >= 2)
+        var index = PosChangeNumber(vec);
+        if (curVec != vec || index == -1)
         {
             curChooseActionDuration = 0;
             loadingCircle.fillAmount = 0;
         }
 
+        if(index == -1 || chooseSlotInfos[index].slotName == "x")
+            return;
+        
         curVec = vec;
 
-        if (Mathf.Abs(vec.normalized.x) + Mathf.Abs(vec.normalized.y) == 1)
+        if (index != -1)
             curChooseActionDuration += Time.deltaTime;
 
         if (curChooseActionDuration >= 0.1f)
@@ -104,21 +108,9 @@ public class ChooseUI : MonoBehaviour
 
         if (curChooseActionDuration >= chooseActionDuration)
         {
-            if (vec == Vector2.right && !string.IsNullOrEmpty(chooseSlotInfos[0].slotName))
+            if (!string.IsNullOrEmpty(chooseSlotInfos[index].slotName))
             {
-                chooseSlotInfos[0].onActiveAction?.Invoke();
-            }
-            else if (vec == Vector2.left && !string.IsNullOrEmpty(chooseSlotInfos[1].slotName))
-            {
-                chooseSlotInfos[1].onActiveAction?.Invoke();
-            }
-            else if (vec == Vector2.up && !string.IsNullOrEmpty(chooseSlotInfos[2].slotName))
-            {
-                chooseSlotInfos[2].onActiveAction?.Invoke();
-            }
-            else if (vec == Vector2.down && !string.IsNullOrEmpty(chooseSlotInfos[3].slotName))
-            {
-                chooseSlotInfos[3].onActiveAction?.Invoke();
+                chooseSlotInfos[index].onActiveAction?.Invoke();
             }
 
             isEnd = true;
@@ -136,7 +128,7 @@ public class ChooseUI : MonoBehaviour
             returnValue = 2;
         else if (vec == Vector2.down)
             returnValue = 3;
-        
-        return returnValue; 
+
+        return returnValue;
     }
 }
