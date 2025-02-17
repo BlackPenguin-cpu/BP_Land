@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -52,14 +53,11 @@ public class ChooseUI : MonoBehaviour
         chooseSlotInfos.Clear();
     }
 
-    public IEnumerator ChooseSlotInfoAddAndStart(List<string> infoText, List<Action> action)
+    public UniTask<Action> ChooseSlotInfoAddAndStart(List<ChooseSlotInfo> infos)
     {
-        for (int i = 0; i < infoText.Count; i++)
-        {
-            chooseSlotInfos.Add(new ChooseSlotInfo(infoText[i], action[i]));
-        }
+        chooseSlotInfos = infos;
 
-        yield return StartCoroutine(InteractionStart());
+        await InteractionStart();
     }
 
     private IEnumerator InteractionStart()

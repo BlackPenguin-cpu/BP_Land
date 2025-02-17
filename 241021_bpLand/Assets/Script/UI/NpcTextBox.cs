@@ -6,6 +6,9 @@ using UnityEngine.UI;
 using TMPro;
 using Febucci.UI;
 using System.Linq;
+using System.Net.NetworkInformation;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 
 public class NpcTextBox : MonoBehaviour
 {
@@ -27,6 +30,8 @@ public class NpcTextBox : MonoBehaviour
 
     [SerializeField] private GameObject textBoxObj;
 
+    private CancellationTokenSource source;
+
     public void Awake()
     {
         Instance = this;
@@ -42,28 +47,27 @@ public class NpcTextBox : MonoBehaviour
         tmpUI.text = "";
     }
 
-    public IEnumerator StartText(List<EffectTextInfo> curTextList)
+    public async UniTask StartText(List<EffectTextInfo> curTextList)
     {
         textList = curTextList;
-        if (textCoroutine != null) StopAllCoroutines();
-        yield return textCoroutine = StartCoroutine(StartText());
+        source.Cancel();
+        await StartText();
     }
 
-    public IEnumerator StartText()
+    private async UniTask StartText()
     {
         textBoxObj.SetActive(true);
         curTmpAnimator = tmpUI.GetComponent<TextAnimator_TMP>();
-
-        var waitSec = new WaitForSeconds(2f);
-        foreach (var curTextInfo in textList)
+        var curTextList = textList;
+        foreach (var curTextInfo in curTextList)
         {
             for (int i = 0; i < curTextInfo.textAnimStr.Count; i++)
             {
                 curTmpAnimator.DefaultBehaviorsTags = curTextInfo.textAnimStr.ToArray();
             }
 
-            yield return StartCoroutine(textAuto.TypingText(tmpUI, curTextInfo.text));
-            yield return waitSec;
+            await textAuto.TypingText(tmpUI, curTextInfo.text).WithCancellation(cancellationToken: source.Token);
+            await UniTask.Delay(2000).AttachExternalCancellation(cancellationToken: source.Token);
 
             curTmpAnimator.Behaviors.Initialize();
         }
