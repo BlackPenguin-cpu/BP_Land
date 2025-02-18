@@ -11,18 +11,6 @@ public class ChooseUI : MonoBehaviour
 {
     public static ChooseUI instance;
 
-    public class ChooseSlotInfo
-    {
-        public string slotName;
-        public Action onActiveAction;
-
-        public ChooseSlotInfo(string name, Action action)
-        {
-            slotName = name;
-            onActiveAction = action;
-        }
-    }
-
     [System.Serializable]
     private class ChooseSlotUIInfo
     {
@@ -31,7 +19,7 @@ public class ChooseUI : MonoBehaviour
     }
 
     [SerializeField] private List<ChooseSlotUIInfo> chooseUiList;
-    public List<ChooseSlotInfo> chooseSlotInfos = new List<ChooseSlotInfo>();
+    public List<string> chooseSlotStringList;
     public Image loadingCircle;
     public GameObject chooseUIParent;
 
@@ -42,34 +30,34 @@ public class ChooseUI : MonoBehaviour
     private Vector2 curVec;
     private bool isEnd;
 
+    private int returnSlotValue = -1;
+
     private void Start()
     {
         instance = this;
         JoyStick.stickAction += SelectAxis;
     }
-
-    public void ChooseSlotReset()
+    public async UniTask<int> ChooseSlotInfoAddAndStart(List<string> slotNames)
     {
-        chooseSlotInfos.Clear();
-    }
-
-    public UniTask<Action> ChooseSlotInfoAddAndStart(List<ChooseSlotInfo> infos)
-    {
-        chooseSlotInfos = infos;
+        chooseSlotStringList = slotNames;
 
         await InteractionStart();
+        await UniTask.WaitUntil(() => returnSlotValue != -1);
+        int returnValue = returnSlotValue;
+        returnSlotValue = -1;
+        return returnValue;
     }
 
-    private IEnumerator InteractionStart()
+    private async UniTask InteractionStart()
     {
         isEnd = false;
         chooseUIParent.SetActive(true);
         for (int i = 0; i < chooseUiList.Count; i++)
         {
-            if (chooseSlotInfos.Count > i && chooseSlotInfos[i].slotName != null)
+            if (chooseSlotStringList.Count > i && chooseSlotStringList[i] != null)
             {
                 chooseUiList[i].image.color = colorPallete[i];
-                chooseUiList[i].tmp.text = chooseSlotInfos[i].slotName;
+                chooseUiList[i].tmp.text = chooseSlotStringList[i];
             }
             else
             {
@@ -78,8 +66,8 @@ public class ChooseUI : MonoBehaviour
             }
         }
 
-        while (!isEnd)
-            yield return null;
+        await UniTask.WaitUntil(() => isEnd);
+
         isEnd = false;
         chooseUIParent.SetActive(false);
     }
@@ -87,8 +75,8 @@ public class ChooseUI : MonoBehaviour
     private void SelectAxis(Vector2 vec)
     {
         var index = PosChangeNumber(vec);
-        if (chooseSlotInfos.Count < index + 1) return;
-        if (curVec != vec || index == -1 || chooseSlotInfos[index].slotName == "x")
+        if (chooseSlotStringList.Count < index + 1) return;
+        if (curVec != vec || index == -1 || chooseSlotStringList[index] == "x")
         {
             curVec = vec;
             curChooseActionDuration = 0;
@@ -103,11 +91,8 @@ public class ChooseUI : MonoBehaviour
 
         if (curChooseActionDuration >= chooseActionDuration)
         {
-            if (!string.IsNullOrEmpty(chooseSlotInfos[index].slotName))
-            {
-                chooseSlotInfos[index].onActiveAction?.Invoke();
-            }
-
+            returnSlotValue = index;
+            ;
             isEnd = true;
         }
     }

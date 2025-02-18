@@ -20,9 +20,8 @@ public class MainNPC : InteractiveObj
 
         var strs = new List<string>() { "감사합니다", "나가주세요", "싫어요" };
         var actions = new List<Action>() { null, null, null };
-        ChooseUI.ChooseSlotInfo(strs, actions);
-        await ChooseUI.instance.ChooseSlotInfoAddAndStart(strs, actions);
-
+        var index = await ChooseUI.instance.ChooseSlotInfoAddAndStart(strs);
+        actions[index].Invoke();
 
         OnInteractionOver();
     }
