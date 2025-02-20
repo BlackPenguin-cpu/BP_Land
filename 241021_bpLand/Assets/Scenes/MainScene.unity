@@ -1663,11 +1663,7 @@ MonoBehaviour:
     isAlreadyInteraction: 0
     loadingBarPos: {x: 0, y: 1.5, z: 0}
     isLockMoving: 1
-  npcTextList:
-  - text: "\uC774\uC0C1\uD55C \uC138\uACC4\uC5D0 \uC628\uAC78 \uD658\uC601\uD574!"
-    textAnimStr: []
-  - text: "\uD639\uC2DC \uC54C\uD30C\uBC43\uAC19\uC740\uAC78 \uCC3E\uACE0\uC788\uB294\uAC70\uC57C?"
-    textAnimStr: []
+  textLog: {fileID: 11400000, guid: 097f5fa10c77a87419b3fc6470238e8b, type: 2}
 --- !u!1 &915595661
 GameObject:
   m_ObjectHideFlags: 0
@@ -5813,6 +5809,7 @@ MonoBehaviour:
     tmp: {fileID: 1358412905}
   - image: {fileID: 45442442}
     tmp: {fileID: 782625019}
+  chooseSlotStringList: []
   loadingCircle: {fileID: 310919677}
   chooseUIParent: {fileID: 201060554}
   colorPallete:

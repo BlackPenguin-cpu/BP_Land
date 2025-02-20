@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Febucci.UI.Effects;
 
 public class NpcTextBox : MonoBehaviour
 {
@@ -17,20 +18,19 @@ public class NpcTextBox : MonoBehaviour
     [System.Serializable]
     public class EffectTextInfo
     {
+        [TextArea]
         public string text;
         public List<string> textAnimStr;
     }
 
+    
     public List<EffectTextInfo> textList = new List<EffectTextInfo>();
     public KoreanTyperDemo_Auto textAuto;
     public TextMeshProUGUI tmpUI;
 
     private TextAnimator_TMP curTmpAnimator;
-    private Coroutine textCoroutine;
 
     [SerializeField] private GameObject textBoxObj;
-
-    private CancellationTokenSource source;
 
     public void Awake()
     {
@@ -42,16 +42,15 @@ public class NpcTextBox : MonoBehaviour
     {
         textBoxObj.SetActive(false);
 
-        if (textCoroutine != null) StopAllCoroutines();
-        curTmpAnimator?.Behaviors.Initialize();
         tmpUI.text = "";
+        curTmpAnimator.DefaultBehaviorsTags = Array.Empty<string>();
     }
 
     public async UniTask StartText(List<EffectTextInfo> curTextList)
     {
         textList = curTextList;
-        source.Cancel();
         await StartText();
+        ResetText();
     }
 
     private async UniTask StartText()
@@ -62,14 +61,14 @@ public class NpcTextBox : MonoBehaviour
         foreach (var curTextInfo in curTextList)
         {
             for (int i = 0; i < curTextInfo.textAnimStr.Count; i++)
-            {
+            { 
                 curTmpAnimator.DefaultBehaviorsTags = curTextInfo.textAnimStr.ToArray();
             }
+            await textAuto.TypingText(tmpUI, curTextInfo.text);
+            await UniTask.Delay(2000);
 
-            await textAuto.TypingText(tmpUI, curTextInfo.text).WithCancellation(cancellationToken: source.Token);
-            await UniTask.Delay(2000).AttachExternalCancellation(cancellationToken: source.Token);
+            curTmpAnimator.DefaultBehaviorsTags = Array.Empty<string>();
 
-            curTmpAnimator.Behaviors.Initialize();
         }
     }
 }

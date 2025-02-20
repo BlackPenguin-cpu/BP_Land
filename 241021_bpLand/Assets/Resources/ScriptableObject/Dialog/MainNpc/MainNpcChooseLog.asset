@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2a46e67b79309841a16754e96f750ac, type: 3}
+  m_Name: MainNpcChooseLog
+  m_EditorClassIdentifier: 
+  chooseTextList:
+  - "\uB124!"
+  - "\uB204\uAD6C\uC138\uC694?"
+  - "\uADF8\uAC8C \uBB50\uC5D0\uC694?"
+  - "\uC774\uACF3\uC740 \uC5B4\uB518\uAC00\uC694?"
+  nextTextLogList:
+  - {fileID: 11400000, guid: d775a5d863695004893c4252f9d52cf4, type: 2}
+  - {fileID: 11400000, guid: 1975277675d08504d9e2d055f903b6b4, type: 2}
+  - {fileID: 11400000, guid: 7024b018a715b304aa438b64219ec752, type: 2}
+  - {fileID: 11400000, guid: 412de4ba2e90f7346b510ab8782c6504, type: 2}

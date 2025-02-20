@@ -1,14 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class MainNPC : InteractiveObj
 {
-    public List<NpcTextBox.EffectTextInfo> npcTextList;
-    public List<NpcTextBox.EffectTextInfo> npcTextList2;
+    [SerializeField] private TextLog textLog;
 
     protected override void OnInteractionAction()
     {
@@ -17,16 +17,27 @@ public class MainNPC : InteractiveObj
 
     private async UniTask NpcStartTexting()
     {
-        await NpcTextBox.Instance.StartText(npcTextList);
-        NpcTextBox.Instance.ResetText();
+        var curTextLog = textLog;
+        while (true)
+        {
+            await NpcTextBox.Instance.StartText(curTextLog.textLogs);
+            if (!curTextLog.nextChooseLog)
+            {
+                OnInteractionOver();
+                return;
+            }
 
-        var strs = new List<string>() { "감사합니다", "나가주세요", "싫어요" };
-        var action = new List<Func<UniTask>>();
-        var index = await ChooseUI.instance.ChooseSlotInfoAddAndStart(strs);
+            var chooseLog = curTextLog.nextChooseLog;
 
-        action.Add(NpcTextBox.Instance.StartText(npcTextList2));
+            var index = await ChooseUI.instance.ChooseSlotInfoAddAndStart(chooseLog.chooseTextList);
 
-        await action[index]();
-        
-        OnInteractionOver();
+            if (!chooseLog.nextTextLogList[index])
+            {
+                OnInteractionOver();
+                return;
+            }
+
+            curTextLog = chooseLog.nextTextLogList[index];
+        }
     }
+}
