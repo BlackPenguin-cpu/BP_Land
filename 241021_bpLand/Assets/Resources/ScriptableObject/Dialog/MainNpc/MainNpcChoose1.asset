@@ -20,3 +20,6 @@ MonoBehaviour:
     textAnimStr:
     - shake
   nextChooseLog: {fileID: 0}
+  sdasdasd:
+    m_PersistentCalls:
+      m_Calls: []

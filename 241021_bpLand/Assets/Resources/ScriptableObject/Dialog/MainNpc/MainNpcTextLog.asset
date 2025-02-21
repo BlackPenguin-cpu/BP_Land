@@ -21,3 +21,18 @@ MonoBehaviour:
     textAnimStr:
     - shake
   nextChooseLog: {fileID: 11400000, guid: 7a5b023f9510f54489ff000618ea6468, type: 2}
+  sdasdasd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 6aa3fe548a435d54cacb09d23f15d0c6, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: set_name
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

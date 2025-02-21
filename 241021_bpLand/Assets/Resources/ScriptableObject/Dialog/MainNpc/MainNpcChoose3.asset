@@ -18,3 +18,6 @@ MonoBehaviour:
   - text: "\uB2E4 \uBAA8\uC740\uB2E4\uBA74 \uD2B9\uBCC4\uD55C \uC77C\uC774 \uC0DD\uAE38\uC9C0\uB3C4?"
     textAnimStr: []
   nextChooseLog: {fileID: 0}
+  sdasdasd:
+    m_PersistentCalls:
+      m_Calls: []

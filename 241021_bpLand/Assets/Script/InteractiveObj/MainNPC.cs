@@ -40,4 +40,9 @@ public class MainNPC : InteractiveObj
             curTextLog = chooseLog.nextTextLogList[index];
         }
     }
+
+    public void Drop()
+    {
+        
+    }
 }
