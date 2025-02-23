@@ -10,5 +10,4 @@ public class TextLog : ScriptableObject
     public List<NpcTextBox.EffectTextInfo> textLogs;
 
     public ChooseLog nextChooseLog;
-    public UnityEvent sdasdasd;
 }

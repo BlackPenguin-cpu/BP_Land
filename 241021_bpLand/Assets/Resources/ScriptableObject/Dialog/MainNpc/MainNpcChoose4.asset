@@ -15,7 +15,8 @@ MonoBehaviour:
   textLogs:
   - text: "\uB204\uAD70\uAC00\uAC00 \uD544\uC694\uB85C \uB9CC\uB4E4\uC5B4\uB454 \uB180\uC774\uD130
       \uAC19\uC740 \uACF5\uAC04\uC774\uB784\uAE4C"
-    textAnimStr: []
+    textAnimStr:
+    - 
   - text: "\uC815 \uAD81\uAE08\uD558\uBA74 \uC774\uACF3\uC800\uACF3 \uB3CC\uC544\uB2E4\uB140\uBD10"
     textAnimStr: []
   nextChooseLog: {fileID: 0}

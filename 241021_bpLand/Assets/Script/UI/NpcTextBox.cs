@@ -1,15 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using Febucci.UI;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Threading;
 using Cysharp.Threading.Tasks;
-using Febucci.UI.Effects;
+using NaughtyAttributes;
 
 public class NpcTextBox : MonoBehaviour
 {
@@ -18,12 +13,32 @@ public class NpcTextBox : MonoBehaviour
     [System.Serializable]
     public class EffectTextInfo
     {
-        [TextArea]
-        public string text;
-        public List<string> textAnimStr;
+        [TextArea] public string text;
+        
+        [Dropdown("GetTextAnimValues")]
+        public string[] textAnimStr;
+
+        private DropdownList<string> GetTextAnimValues()
+        {
+            return new DropdownList<string>()
+            {
+                { "bounce", "bounce" },
+                { "Dangle", "dangle" },
+                { "Fade", "fade" },
+                { "Pend", "pend" },
+                { "Rainbow", "rainb" },
+                { "Rotation", "rot" },
+                { "Shake", "shake" },
+                { "Increase", "incr" },
+                { "Slide", "slide" },
+                { "Swing", "swing" },
+                { "Wave", "wave" },
+                { "Wiggle", "wiggle" },
+            };
+        }
     }
 
-    
+
     public List<EffectTextInfo> textList = new List<EffectTextInfo>();
     public KoreanTyperDemo_Auto textAuto;
     public TextMeshProUGUI tmpUI;
@@ -60,15 +75,15 @@ public class NpcTextBox : MonoBehaviour
         var curTextList = textList;
         foreach (var curTextInfo in curTextList)
         {
-            for (int i = 0; i < curTextInfo.textAnimStr.Count; i++)
-            { 
-                curTmpAnimator.DefaultBehaviorsTags = curTextInfo.textAnimStr.ToArray();
-            }
+            // for (int i = 0; i < curTextInfo.textAnimStr.Count; i++)
+            // {
+            //     curTmpAnimator.DefaultBehaviorsTags = curTextInfo.textAnimStr.ToArray();
+            // }
+
             await textAuto.TypingText(tmpUI, curTextInfo.text);
             await UniTask.Delay(2000);
 
             curTmpAnimator.DefaultBehaviorsTags = Array.Empty<string>();
-
         }
     }
 }
