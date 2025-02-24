@@ -15,11 +15,9 @@ MonoBehaviour:
   textLogs:
   - text: "\uC774\uC138\uC0C1 \uC774\uACF3\uC800\uACF3\uC744 \uB3CC\uC544\uB2E4\uB2C8\uB2E4
       \uBCF4\uBA74 \uAE08\uBC29 \uCC3E\uC744 \uC218 \uC788\uC744\uAEBC\uC57C!"
-    textAnimStr: []
+    textAnimStr:
+    - 
   - text: "\uC5B4\uCA4C\uBA74 \uC7AC\uBC0C\uB294 \uACBD\uD5D8\uC774 \uB420\uC9C0\uB3C4?"
     textAnimStr:
     - shake
   nextChooseLog: {fileID: 0}
-  sdasdasd:
-    m_PersistentCalls:
-      m_Calls: []

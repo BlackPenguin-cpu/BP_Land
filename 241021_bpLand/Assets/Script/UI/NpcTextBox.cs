@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using TMPro;
 using Febucci.UI;
 using Cysharp.Threading.Tasks;
 using NaughtyAttributes;
+using UnityEngine.UI;
 
 public class NpcTextBox : MonoBehaviour
 {

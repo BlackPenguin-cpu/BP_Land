@@ -27,7 +27,7 @@ public class ChooseUI : MonoBehaviour
 
     private float curChooseActionDuration = 0;
     private readonly float chooseActionDuration = 3;
-    private Vector2 curVec;
+    private Vector2 prevVec;
     private bool isEnd;
 
     private int returnSlotValue = -1;
@@ -75,10 +75,11 @@ public class ChooseUI : MonoBehaviour
     private void SelectAxis(Vector2 vec)
     {
         var index = PosChangeNumber(vec);
+        var curVec = vec.Vector2NormalizedForJoystick();
         if (chooseSlotStringList.Count < index + 1) return;
-        if (curVec != vec || index == -1 || chooseSlotStringList[index] == "x")
+        if (prevVec != curVec || index == -1 || chooseSlotStringList[index] == "x")
         {
-            curVec = vec;
+            prevVec = curVec;
             curChooseActionDuration = 0;
             loadingCircle.fillAmount = 0;
             return;
@@ -99,7 +100,7 @@ public class ChooseUI : MonoBehaviour
 
     private int PosChangeNumber(Vector2 vec)
     {
-        Vector2 thisVec2 = vec.normalized;
+        Vector2 thisVec2 = vec.Vector2NormalizedForJoystick();
         int returnValue = -1;
         if (thisVec2 == Vector2.right)
             returnValue = 0;
