@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.NetworkInformation;
 using UnityEngine;
 using TMPro;
 using Febucci.UI;
 using Cysharp.Threading.Tasks;
 using NaughtyAttributes;
+using Unity.VisualScripting;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class NpcTextBox : MonoBehaviour
@@ -16,27 +19,28 @@ public class NpcTextBox : MonoBehaviour
     public class EffectTextInfo
     {
         [TextArea] public string text;
-        
-        [Dropdown("GetTextAnimValues")]
-        public string[] textAnimStr;
 
-        private DropdownList<string> GetTextAnimValues()
+        public List<ETextAnim> textAnimsStrList;
+
+        public string[] GetAnimArray()
         {
-            return new DropdownList<string>()
-            {
-                { "bounce", "bounce" },
-                { "Dangle", "dangle" },
-                { "Fade", "fade" },
-                { "Pend", "pend" },
-                { "Rainbow", "rainb" },
-                { "Rotation", "rot" },
-                { "Shake", "shake" },
-                { "Increase", "incr" },
-                { "Slide", "slide" },
-                { "Swing", "swing" },
-                { "Wave", "wave" },
-                { "Wiggle", "wiggle" },
-            };
+            return textAnimsStrList.Select(animTxt => animTxt.ToString()).ToArray();
+        }
+
+        public enum ETextAnim
+        {
+            bounce,
+            dangle,
+            fade,
+            pend,
+            rainb,
+            rot,
+            shake,
+            incr,
+            slide,
+            swing,
+            wave,
+            wiggle,
         }
     }
 
@@ -77,10 +81,7 @@ public class NpcTextBox : MonoBehaviour
         var curTextList = textList;
         foreach (var curTextInfo in curTextList)
         {
-            // for (int i = 0; i < curTextInfo.textAnimStr.Count; i++)
-            // {
-            //     curTmpAnimator.DefaultBehaviorsTags = curTextInfo.textAnimStr.ToArray();
-            // }
+            curTmpAnimator.DefaultBehaviorsTags = curTextInfo.GetAnimArray();
 
             await textAuto.TypingText(tmpUI, curTextInfo.text);
             await UniTask.Delay(2000);

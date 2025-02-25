@@ -16,9 +16,9 @@ MonoBehaviour:
   - "\uB124!"
   - "\uB204\uAD6C\uC138\uC694?"
   - "\uADF8\uAC8C \uBB50\uC5D0\uC694?"
-  - "\uC774\uACF3\uC740 \uC5B4\uB518\uAC00\uC694?"
+  - "\uC800 \uADF8\uB0E5 \uB098\uAC08\uB798\uC694"
   nextTextLogList:
   - {fileID: 11400000, guid: d775a5d863695004893c4252f9d52cf4, type: 2}
   - {fileID: 11400000, guid: 1975277675d08504d9e2d055f903b6b4, type: 2}
   - {fileID: 11400000, guid: 7024b018a715b304aa438b64219ec752, type: 2}
-  - {fileID: 11400000, guid: 412de4ba2e90f7346b510ab8782c6504, type: 2}
+  - {fileID: 0}

@@ -14,13 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textLogs:
   - text: "\uC774\uC0C1\uD55C \uC138\uACC4\uC5D0 \uC628\uAC78 \uD658\uC601\uD574!!!"
-    textAnimStr:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+    textAnimsStrList: 060000000b00000009000000
   - text: "\uD639\uC2DC \uC54C\uD30C\uBC43\uAC19\uC740\uAC78 \uCC3E\uACE0\uC788\uB294\uAC70\uC57C?"
-    textAnimStr: []
+    textAnimsStrList: 
   nextChooseLog: {fileID: 11400000, guid: 7a5b023f9510f54489ff000618ea6468, type: 2}
